@@ -172,8 +172,7 @@ export const rawData = [
 
 const App = () => {
   return (
-    <div className="container">
-      <h2>Table</h2>
+    <div className="">
       <Table columns={tableColumns} data={rawData} />
     </div>
   );

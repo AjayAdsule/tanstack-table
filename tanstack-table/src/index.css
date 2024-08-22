@@ -6,7 +6,6 @@
 .table-container {
   max-height: 300px; /* Set the desired height for the scrollable area */
   overflow-y: auto; /* Allow vertical scrolling */
-  border: 1px solid red;
 }
 
 .styled-table {
@@ -38,4 +37,10 @@
 
 .styled-table tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
+}
+.shrink_btn {
+  padding: 12px;
+  background-color: blue;
+  color: white;
+  border-radius: 12px;
 }
