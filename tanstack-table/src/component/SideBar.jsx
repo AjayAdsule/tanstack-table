@@ -15,6 +15,7 @@ const SideBar = ({ setIsSideBarOpen, isSideBarOpen }) => {
         <li onClick={() => navigate("/ether")}>Ether</li>
         <li onClick={() => navigate("/css")}>CSS Animations</li>
         <li onClick={() => navigate("/page1")}>Page1</li>
+        <li onClick={() => navigate("/page2")}>Page2</li>
       </ul>
     </aside>
   );

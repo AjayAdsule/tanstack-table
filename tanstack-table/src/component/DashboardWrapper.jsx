@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import "./../styles/dashboard.css";
 import SideBar from "./SideBar";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const DashboardWrapper = ({ children }) => {
   console.log("dashboard wrapper");
@@ -14,7 +15,9 @@ const DashboardWrapper = ({ children }) => {
           isSideBarOpen={isSideBarOpen}
         />
       </div>
-      <div className="dashboard_main">{children}</div>
+      <div className="dashboard_main">
+        <Outlet />
+      </div>
     </div>
   );
 };
