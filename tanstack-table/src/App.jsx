@@ -1,179 +1,53 @@
-import Table from "./component/Table";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { GlobalContext } from "./context/Global";
+import Home from "./component/Home";
+import DashboardWrapper from "./component/DashboardWrapper";
+import CssAnimations from "./pages/Animations";
+import Ether from "./pages/Ether.js";
+import Page1 from "./pages/Page1/index.jsx";
+import PropTypes from "prop-types";
+import Login from "./pages/login/Login.jsx";
+import { AuthProvider } from "./lib/Auth/AuthProvider.jsx";
 
-export const tableColumns = [
-  {
-    header: "First Name",
-    accessorKey: "firstName",
-  },
-  {
-    header: "Last Name",
-    accessorKey: "lastName",
-  },
-  {
-    header: "Age",
-    accessorFn: (info) => info.age,
-  },
-  {
-    header: "Visits",
-    accessorKey: "visits",
-  },
-  {
-    header: "Progress",
-    accessorFn: (info) => info.progress,
-  },
-];
+const PrivateRoute = ({ element }) => {
+  // In future, you can add authentication logic here
+  useEffect(() => {
+    console.log("initial run", Math.random() * 10);
+  }, []);
+  return <DashboardWrapper>{element}</DashboardWrapper>;
+};
 
-export const rawData = [
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-  },
-  {
-    firstName: "Kevin",
-    lastName: "Vandy",
-    age: 27,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Ajay",
-    lastName: "Adsule",
-    age: 24,
-    visits: 130,
-    progress: 90,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-  {
-    firstName: "Rahul",
-    lastName: "Kondu",
-    age: 25,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-  },
-];
+PrivateRoute.propTypes = {
+  element: PropTypes.node.isRequired,
+};
 
 const App = () => {
+  const [count, setCount] = useState(1);
+  const handleCountChange = () => setCount((prev) => prev + 1);
   return (
     <div className="">
-      <Table columns={tableColumns} data={rawData} />
+      <GlobalContext.Provider value={{ count, handleCountChange }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/css"
+                element={<PrivateRoute element={<CssAnimations />} />}
+              />
+
+              <Route
+                path="/page1"
+                element={<PrivateRoute element={<Page1 />} />}
+              />
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </GlobalContext.Provider>
     </div>
   );
 };

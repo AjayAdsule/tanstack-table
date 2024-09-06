@@ -1,0 +1,65 @@
+.dashboard_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.dashboard_sidebar {
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  top: 10;
+  left: 10;
+  margin-top: 20px;
+}
+
+.dashboard_main {
+  margin-left: 25%;
+  width: 75%;
+  height: 100vh;
+  padding: 20px;
+}
+
+.side_bar {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid gray;
+  padding: 0.9rem;
+  width: 250px; /* Width when sidebar is open */
+  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+  overflow: hidden;
+}
+
+.side_bar_close {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid gray;
+  padding: 0.9rem;
+  width: 50px; /* Width when sidebar is closed */
+  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.side_bar_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  opacity: 1; /* Initially fully visible */
+  transition: opacity 0.3s ease-in-out; /* Smooth opacity transition */
+}
+
+.side_bar_close ul {
+  opacity: 0; /* Hide the content when the sidebar is closed */
+}
+.list > li {
+  cursor: pointer;
+}

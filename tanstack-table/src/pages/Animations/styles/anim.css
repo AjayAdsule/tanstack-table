@@ -1,0 +1,16 @@
+@keyframes Scales {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
+.circle {
+  height: 60px;
+  width: 60px;
+  border: 1px solid;
+  border-radius: 50%;
+  animation: 2s ease-in-out infinite alternate Scales;
+}

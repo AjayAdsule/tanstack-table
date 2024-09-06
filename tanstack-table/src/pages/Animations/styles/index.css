@@ -1,0 +1,8 @@
+.css_animation_container {
+  display: flex;
+  height: 900px;
+  width: 100%;
+  border: 1px solid red;
+  justify-content: center;
+  align-items: center;
+}
